@@ -6,15 +6,19 @@ services:
     ports:
       - "5000:5000"
     networks:
-      - counter-net
+      - frontend-net
+      - backend-net
     volumes:
       - counter-vol:/code
   redis: 
     image: "redis:alpine" 
     networks:
-      - counter-net   
-networks:
-  counter-net:
-    driver: bridge
+     - backend-net
+
+networks: 
+  frontend-net:
+  backend-net:
+    internal: true
+    
 volumes:
   counter-vol: {}
